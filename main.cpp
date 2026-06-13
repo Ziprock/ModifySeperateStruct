@@ -10,6 +10,10 @@
 // input file gets input and also change/update struct in data - includes data.h
 // output file reads data and uses it to output/render to screen - includes data.h
 
+void hellyeah(Game& state) {
+    state.value = 69;   // Input modifies the shared data
+}
+
 int main()
 {
 
@@ -19,22 +23,28 @@ output out;
   
 
 // Simulate a few frames
-    for (int i = 0; i < 89; i++) {
-        in.update(game);   // modifies state
-        out.render(game);  // reads state
-    }
+  for (int i = 0; i < 89; i++) {
+    in.update(game);   // modifies state
+    out.render(game);  // reads state
+  }
+  
+  for (int i = 0; i < 5; i++) {
+    in.updateDown(game);   // modifies state
+    out.render(game);  // reads state
+  }
 
-    for (int i = 0; i < 5; i++) {
-        in.updateDown(game);   // modifies state
-        out.render(game);  // reads state
-    }
+  // modify based on function here
+  std::cout<<"\n\nHell yeah\n";
+  hellyeah(game);
+  out.render(game);
+  std::cout<<"\n\n";
 
 //reset
-        std::cout<<"\nBefore Reset!\n";
-        out.render(game);  // reads state
-        std::cout<<"Reset!\n";
-        in.updateReset(game);   // modifies state
-        out.render(game);  // reads state
+  std::cout<<"\nBefore Reset!\n";
+  out.render(game);  // reads state
+  std::cout<<"Reset!\n";
+  in.updateReset(game);   // modifies state
+  out.render(game);  // reads state
 
 // this loop can modify value to any integer
 while (true) {
